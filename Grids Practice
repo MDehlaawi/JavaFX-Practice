@@ -1,0 +1,122 @@
+package com.mycompany.aplab2;
+
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+/**
+ * JavaFX App
+ */
+public class App extends Application {
+
+    @Override
+    public void start(Stage stage) {
+      Color grey =  Color.rgb(208,206,206);
+      
+      Image image = new Image("file:///Users/Moody/Desktop/Screenshot%202023-12-16%20at%208.56.51%E2%80%AFPM.png");
+      ImageView pc = new ImageView(image);
+      pc.setFitHeight(130);
+      pc.setFitWidth(150);
+        
+      ImageView pc1 = new ImageView(image);
+      pc1.setFitHeight(130);
+      pc1.setFitWidth(150);
+      
+      Text lText = new Text("Home \nNews \nContact us");
+      lText.setFill(Color.WHITE);
+      
+      Text rText = new Text("Quik links");
+      rText.setFill(Color.WHITE);
+      
+      Text bText = new Text("Footer");
+      bText.setFill(Color.WHITE);
+           
+      Text text = new Text("Text.........................................................................................."
+              + "\nText.........................................................................................."
+              + "\nText..........................................................................................");
+  
+      
+      Button x = new Button();
+        x.setText("X");
+        x. setStyle("-fx-background-color: #4674C1; -fx-text-fill: white; ");
+        x.setOnAction((ActionEvent event) -> {
+            Platform.exit();
+        });
+        
+        Button max = new Button();
+        max.setStyle("-fx-background-color: #4674C1; -fx-text-fill: white; ");
+        max.setText("+");
+             
+        Button min = new Button();
+        min.setStyle("-fx-background-color: #4674C1; -fx-text-fill: white; ");
+        min.setText("-");
+    
+      
+    BorderPane pane = new BorderPane();
+    // blue #4674C1 light blue #B5C8E6 gray #D0CECE boeder line #557FC4
+   
+    HBox top = new HBox(5);
+    top.getChildren().add(x); 
+    top.getChildren().add(max);
+    top.getChildren().add(min);
+    top.setStyle("-fx-border-color: #557FC4; -fx-background-color: #B5C8E6; -fx-border-width: 0.5px;"); 
+    top.setPadding(new Insets(6));   
+    
+    HBox bottom = new HBox(); bottom.getChildren().add(bText);
+    bottom.setAlignment(Pos.CENTER);
+    bottom.setPadding(new Insets(6));
+    bottom.setStyle("-fx-border-color: #557FC4; -fx-background-color: #B5C8E6; -fx-border-width: 0.5px;");
+      
+    HBox right = new HBox(); right.getChildren().add(rText);
+    right.setPadding(new Insets(15));
+    right.setStyle("-fx-border-color: #557FC4; -fx-background-color: #B5C8E6; -fx-border-width: 0.5px;");   
+        
+    HBox left = new HBox();   
+    left.getChildren().add(lText); 
+    left.setPadding(new Insets(15));
+    left.setStyle("-fx-border-color: #557FC4;-fx-background-color: #4674C1; -fx-border-width: 0.5px;");  
+    
+    HBox center = new HBox(10);
+    center.getChildren().add(pc);
+    center.setAlignment(Pos.TOP_CENTER); 
+    center.getChildren().add(pc1);
+    center.setStyle("-fx-background-color: #D0CECE;"); 
+    
+    VBox v = new VBox(); 
+    v.getChildren().add(center);
+    v.getChildren().add(text);
+    v.setAlignment(Pos.CENTER); 
+    v.setStyle("-fx-border-color: #557FC4;-fx-background-color: #D0CECE; -fx-border-width: 0.5px;"); 
+    
+    pane.setTop(top);
+    pane.setRight(right);
+    pane.setBottom(bottom);
+    pane.setLeft(left);
+    pane.setCenter(v);
+    pane.setStyle("-fx-border-color: #D0CECE; -fx-border-width: 10px;"); //outer border 
+    
+    Scene scene = new Scene(pane,600,300);
+    scene.setFill(grey);
+    stage.setTitle("Adavanced Programing Lab 2"); 
+    stage.setScene(scene); 
+    stage.show(); 
+    
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+}
