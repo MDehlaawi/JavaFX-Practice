@@ -1,0 +1,104 @@
+package com.mycompany.aplab4;
+
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+
+/**
+ * JavaFX App
+ */
+public class App extends Application {
+
+    @Override
+    public void start(Stage stage) {
+    
+    BorderPane pane = new BorderPane(); 
+    
+    ///////////////top//////////////////
+
+    Circle red = new Circle(20);
+    red.setFill(Color.WHITE);
+    red.setStroke(Color.BLACK);
+    Circle green = new Circle(20);
+    green.setFill(Color.WHITE);
+    green.setStroke(Color.BLACK);
+    Circle yellow = new Circle(20);
+    yellow.setFill(Color.WHITE);
+    yellow.setStroke(Color.BLACK);
+    
+    VBox buttons = new VBox(5,red,yellow,green);
+    buttons.setAlignment(Pos.CENTER);
+    buttons.setPadding(new Insets(15));
+    
+    Rectangle rect  = new Rectangle(60,150);
+    rect.setFill(Color.WHITE);
+    rect.setStroke(Color.BLACK);
+    
+    StackPane topStack = new StackPane(rect,buttons);
+    
+    ///////////////bottom//////////////////
+    
+    RadioButton rRed = new RadioButton("Red "); 
+    RadioButton rGreen = new RadioButton("Green ");
+    RadioButton rYellow = new RadioButton("Yellow ");
+    
+    ToggleGroup group = new ToggleGroup(); rRed.setToggleGroup(group); 
+    rRed.setToggleGroup(group);
+    rGreen.setToggleGroup(group);
+    rYellow.setToggleGroup(group);
+    
+    rRed.setOnAction(e -> {
+       if (rRed.isSelected()) { 
+           red.setFill(Color.RED);
+           green.setFill(Color.WHITE);
+           yellow.setFill(Color.WHITE);
+       }});
+    rGreen.setOnAction(e -> {
+       if (rGreen.isSelected()) { 
+           green.setFill(Color.GREEN);
+           red.setFill(Color.WHITE);
+           yellow.setFill(Color.WHITE);
+       }});
+    rYellow.setOnAction(e -> {
+       if (rYellow.isSelected()) { 
+           yellow.setFill(Color.YELLOW); 
+           green.setFill(Color.WHITE);
+           red.setFill(Color.WHITE);
+       }});
+    
+    HBox bottom = new HBox(3,rRed, rYellow, rGreen);
+    bottom.setAlignment(Pos.CENTER);
+    bottom.setPadding(new Insets(15));   
+       
+    pane.setCenter(topStack);
+    pane.setBottom(bottom);
+    
+    Scene scene = new Scene(pane,400,300);
+    stage.setTitle(" Traffic light - Mawaddah"); 
+    //scene.setFill(bg);
+    stage.setScene(scene); 
+    stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+}
